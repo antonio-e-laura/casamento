@@ -112,7 +112,6 @@
             margin-bottom: 35px;
             color: var(--gold);
         }
-
         /* PIX */
         .pix-container {
             background: white;
@@ -160,7 +159,6 @@
             gap: 30px;
         }
 
-        /* 🎁 CARD MELHORADO */
         .card-presente {
             background: rgba(255,255,255,0.9);
             padding: 35px 25px;
@@ -179,7 +177,6 @@
             box-shadow: 0 20px 50px rgba(212,175,55,0.2);
         }
 
-        /* brilho */
         .card-presente::before {
             content: "";
             position: absolute;
@@ -203,7 +200,6 @@
             margin: 15px 0;
         }
 
-        /* botão */
         .btn-presentear {
             background: linear-gradient(135deg, var(--gold), #b8962d);
             color: white;
@@ -226,10 +222,15 @@
         @media (max-width: 768px) {
             h1 { font-size: 3.5rem; }
             #countdown { flex-wrap: wrap; justify-content: center; }
+
+            /* 🔥 CORREÇÃO DO BUG MOBILE */
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
-
 <body class="bg-floral-soft">
 
 <header class="fade-up">
@@ -250,6 +251,7 @@
         Aguardamos vocês no nosso grande dia e que Deus abençoe a cada um !!"
     </p>
 </section>
+
 <section id="lista" class="fade-up">
     <h2>Lista de Presentes</h2>
     <p style="margin-bottom: 30px;">Sua presença é o maior presente, mas se desejar nos abençoar, preparamos algumas opções simbólicas.</p>
@@ -266,6 +268,7 @@
     <!-- COZINHA -->
     <h3 class="categoria-presentes">Para Nossa Cozinha</h3>
     <div class="presentes-grid">
+
         <div class="card-presente fade-up">
             <h3>Conjunto de Copos de Cristal</h3>
             <p class="price">R$ 120,00</p>
@@ -313,8 +316,8 @@
             <p class="price">R$ 3.800,00</p>
             <a href="COLE_AQUI_SEU_LINK_DE_PAGAMENTO" class="btn-presentear">Presentear</a>
         </div>
-    </div>
 
+    </div>
     <!-- CAMA -->
     <h3 class="categoria-presentes">Cama, Mesa e Banho</h3>
     <div class="presentes-grid">
@@ -435,6 +438,7 @@
         </div>
     </div>
 </section>
+
 <section id="mensagens" class="fade-up">
     <h2>Deixe um Recado</h2>
 
@@ -454,18 +458,27 @@
 </footer>
 
 <script>
-// ✨ ANIMAÇÃO AO ROLAR
+// ✨ ANIMAÇÃO (CORRIGIDA PARA CELULAR)
 const elements = document.querySelectorAll('.fade-up');
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.2 });
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.2 });
 
-elements.forEach(el => observer.observe(el));
+    elements.forEach(el => {
+        el.classList.add('show'); // 🔥 garante visível no mobile
+        observer.observe(el);
+    });
+
+} else {
+    // fallback
+    elements.forEach(el => el.classList.add('show'));
+}
 
 // ⏳ CONTADOR
 const weddingDate = new Date("May 23, 2026 16:00:00").getTime();
