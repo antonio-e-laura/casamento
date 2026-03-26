@@ -35,6 +35,32 @@
             background-position: center;
         }
 
+        /* ===== GRID DOS PRESENTES (CORREÇÃO MOBILE) ===== */
+        .presentes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .presentes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .presentes-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .card-presente {
+            width: 100%;
+        }
+
+    </style>
+</head>
+
         /* ✨ ANIMAÇÃO */
         .fade-up {
             opacity: 0;
