@@ -7,229 +7,235 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:italic,wght@0,400;1,700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --rose: #eecbc9;
-            --rose-dark: #d4a5a2;
-            --gold: #d4af37;
-            --white: #ffffff;
-            --bg-light: #fffdfd;
-            --text: #5a5a5a;
-        }
+  <style>
+    :root {
+        --rose: #eecbc9;
+        --rose-dark: #d4a5a2;
+        --gold: #d4af37;
+        --white: #ffffff;
+        --bg-light: #fffdfd;
+        --text: #5a5a5a;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text);
-            background-color: var(--bg-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--text);
+        background-color: var(--bg-light);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
 
-        .bg-floral-soft {
-            background-image: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.85)),
-                  url("Fundo.png");
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
+    .bg-floral-soft {
+        background-image: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.85)),
+              url("Fundo.png");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
 
-           /* ✨ ANIMAÇÃO */
+    /* ✨ ANIMAÇÃO */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+    }
+
+    .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    header {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 5.5rem;
+        color: var(--gold);
+        margin-bottom: 15px;
+    }
+
+    .data-casamento {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        border-top: 2px solid var(--rose);
+        border-bottom: 2px solid var(--rose);
+        padding: 15px 30px;
+        color: var(--rose-dark);
+        background: rgba(255,255,255,0.7);
+    }
+
+    #countdown {
+        display: flex;
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .countdown-item {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px 20px;
+        border-radius: 12px;
+        min-width: 90px;
+        box-shadow: 0 8px 25px rgba(212,175,55,0.1);
+        border: 1px solid var(--rose);
+    }
+
+    .countdown-item span {
+        display: block;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: var(--gold);
+        font-family: 'Playfair Display', serif;
+    }
+
+    section {
+        padding: 80px 20px;
+        max-width: 1100px;
+        margin: auto;
+        text-align: center;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.8rem;
+        margin-bottom: 35px;
+        color: var(--gold);
+    }
+
+    /* PIX */
+    .pix-container {
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        border: 2px dashed var(--gold);
+        margin-bottom: 50px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .pix-key {
+        font-size: 1.8rem;
+        color: var(--rose-dark);
+        font-weight: 700;
+        margin: 15px 0;
+        cursor: pointer;
+        display: inline-block;
+        transition: 0.3s;
+    }
+
+    .pix-key:hover {
+        color: var(--gold);
+        transform: scale(1.05);
+    }
+
+    .pix-info {
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 10px;
+    }
+
+    .categoria-presentes {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem;
+        color: var(--rose-dark);
+        margin: 50px 0 25px;
+        text-align: left;
+        border-left: 5px solid var(--rose);
+        padding-left: 15px;
+    }
+
+    .presentes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .card-presente {
+        background: rgba(255,255,255,0.9);
+        padding: 35px 25px;
+        border-radius: 25px;
+        border: 1px solid rgba(238,203,201,0.6);
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-presente:hover {
+        transform: translateY(-10px) scale(1.02);
+        border-color: var(--gold);
+        box-shadow: 0 20px 50px rgba(212,175,55,0.2);
+    }
+
+    .price {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--gold);
+        font-family: 'Playfair Display', serif;
+        margin: 15px 0;
+    }
+
+    .btn-presentear {
+        background: linear-gradient(135deg, var(--gold), #b8962d);
+        color: white;
+        padding: 14px 25px;
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+    .btn-presentear:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(212,175,55,0.4);
+    }
+
+    /* 📱 MOBILE */
+    @media (max-width: 768px) {
+        h1 { font-size: 3.5rem; }
+        #countdown { flex-wrap: wrap; justify-content: center; }
+
         .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
+            opacity: 1 !important;
+            transform: none !important;
         }
 
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 5.5rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .data-casamento {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            border-top: 2px solid var(--rose);
-            border-bottom: 2px solid var(--rose);
-            padding: 15px 30px;
-            color: var(--rose-dark);
-            background: rgba(255,255,255,0.7);
-        }
-
-        #countdown {
-            display: flex;
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 20px;
-            border-radius: 12px;
-            min-width: 90px;
-            box-shadow: 0 8px 25px rgba(212,175,55,0.1);
-            border: 1px solid var(--rose);
-        }
-
-        .countdown-item span {
-            display: block;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--gold);
-            font-family: 'Playfair Display', serif;
-        }
-
-        section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: auto;
-            text-align: center;
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            margin-bottom: 35px;
-            color: var(--gold);
-        }
-        /* PIX */
-        .pix-container {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            border: 2px dashed var(--gold);
-            margin-bottom: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .pix-key {
-            font-size: 1.8rem;
-            color: var(--rose-dark);
-            font-weight: 700;
-            margin: 15px 0;
-            cursor: pointer;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .pix-key:hover {
-            color: var(--gold);
-            transform: scale(1.05);
-        }
-
-        .pix-info {
-            font-size: 0.9rem;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        .categoria-presentes {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: var(--rose-dark);
-            margin: 50px 0 25px;
-            text-align: left;
-            border-left: 5px solid var(--rose);
-            padding-left: 15px;
-        }
-
+        /* 🔥 AQUI ESTÁ A CORREÇÃO */
         .presentes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .card-presente {
-            background: rgba(255,255,255,0.9);
-            padding: 35px 25px;
-            border-radius: 25px;
-            border: 1px solid rgba(238,203,201,0.6);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-presente:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--gold);
-            box-shadow: 0 20px 50px rgba(212,175,55,0.2);
-        }
-
-        .card-presente::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-            transition: 0.6s;
-        }
-
-        .card-presente:hover::before {
-            left: 100%;
+            padding: 20px 12px;
         }
 
         .price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold);
-            font-family: 'Playfair Display', serif;
-            margin: 15px 0;
+            font-size: 1.3rem;
         }
 
         .btn-presentear {
-            background: linear-gradient(135deg, var(--gold), #b8962d);
-            color: white;
-            padding: 14px 25px;
-            border: none;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            width: 100%;
-            transition: 0.3s;
+            font-size: 0.75rem;
+            padding: 10px;
         }
+    }
+</style>
 
-        .btn-presentear:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 3.5rem; }
-            #countdown { flex-wrap: wrap; justify-content: center; }
-
-            /* 🔥 CORREÇÃO DO BUG MOBILE */
-            .fade-up {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-    </style>
 </head>
 <body class="bg-floral-soft">
 
